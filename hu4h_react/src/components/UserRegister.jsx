@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { createUser } from '../services/UserService'
 
-const UserComponent = () => {
+const UserRegister = () => {
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -20,7 +20,7 @@ const UserComponent = () => {
 
     return (
         <div>
-            <h2>Sign In / Sign Up</h2>
+            <h2>Register</h2>
             <form>
                 <div>
                     <label>Username: </label>
@@ -77,4 +77,4 @@ const UserComponent = () => {
 
  }
 
- export default UserComponent
+ export default UserRegister

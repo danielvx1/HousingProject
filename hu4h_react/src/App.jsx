@@ -1,12 +1,16 @@
 import { useState } from 'react'
 import './App.css'
-import UserComponent from './components/UserComponent'
+import UserRegister from './components/UserRegister'
+import UserConfirm from './components/UserConfirm'
+import UserLogin from './components/UserLogin'
 
 function App() {
 
   return (
     <>
-      <UserComponent />
+      <UserRegister />
+      <UserConfirm />
+      <UserLogin />
     </>
   )
 }

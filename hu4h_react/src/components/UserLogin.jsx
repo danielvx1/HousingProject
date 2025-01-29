@@ -1,19 +1,32 @@
 import React, { useState } from 'react'
 import { validateLoginUser } from '../services/UserService'
+import { useNavigate } from 'react-router-dom'
 
 const UserLogin = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [errorMessage, setErrorMessage] = useState('')
+    const navigate = useNavigate()
 
-    function loginUser(e) {
+    const loginUser = async (e) => {
         e.preventDefault();
 
         const user = {username, password}
         console.log(user)
 
-        validateLoginUser(user).then((response) => {
-            console.log(response.data);
-        })
+        try {
+            const response = await validateLoginUser(user); // Call service
+            console.log(response.data); // Debugging response
+      
+            // Navigate based on user role
+            const { role } = response.data;
+            if (role === "ADMIN") navigate("/admin");
+            else if (role === "SOCIAL") navigate("/social");
+            else if (role === "VOLUNTEER") navigate("/volunteer");
+          } catch (error) {
+            // Handle errors
+            console.error(error)
+          }
     }
 
     return (

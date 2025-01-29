@@ -40,7 +40,7 @@ public class RegisteringUser {
     private Role role;
 
 
-    public RegisteringUser(String username, String password, String email, Role role) {
+    public RegisteringUser(String username, String email, String password, Role role) {
         this.username = username;
         this.email = email;
         this.password = password;

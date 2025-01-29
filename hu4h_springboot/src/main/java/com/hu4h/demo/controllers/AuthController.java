@@ -14,7 +14,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.Optional;
+import java.util.Map;
 
 @RestController
 @RequestMapping("api/auth")
@@ -53,11 +55,16 @@ public class AuthController {
             }
             else {
                 String currPassword = loginDTO.getPassword();
-                if (currUser.get().getPassword().equals(currPassword)) {
+                if (!currUser.get().getPassword().equals(currPassword)) {
                     return ResponseEntity.badRequest().body("Password is incorrect\n");
                 }
                 else {
-                    return ResponseEntity.ok().body("User logged in successfully");
+                    // Return user role and success message
+                    Map<String, Object> response = new HashMap<>();
+                    response.put("message", "User logged in successfully");
+                    response.put("role", currUser.get().getRole());
+                    response.put("username", currUser.get().getUsername());
+                    return ResponseEntity.ok().body(response);
                 }
             }
         }
@@ -80,7 +87,7 @@ public class AuthController {
                 return ResponseEntity.badRequest().body("User is already confirmed\n");
             }
             String currPassword = confirmDTO.getPassword();
-            if (currUser.get().getPassword().equals(currPassword)) {
+            if (!currUser.get().getPassword().equals(currPassword)) {
                 return ResponseEntity.badRequest().body("Authenticating password is incorrect");
             }
             else {

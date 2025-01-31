@@ -1,16 +1,21 @@
 import { useState } from 'react'
 import './App.css'
-import UserRegister from './components/UserRegister'
-import UserConfirm from './components/UserConfirm'
-import UserLogin from './components/UserLogin'
+import UserLoginPage from './components/UserLoginPage'
+import { Router, Routes, Route } from 'react-router-dom'
+import AdminPage from './pages/AdminPage'
+import SocialPage from './pages/SocialPage'
+import VolunteerPage from './pages/VolunteerPage'
 
 function App() {
 
   return (
-    <>
-      <UserRegister />
-      <UserConfirm />
-      <UserLogin />
+    <>    
+      <Routes>
+        <Route path="/" element={<UserLoginPage />} />
+        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/social" element={<SocialPage />} />
+        <Route path="/volunteer" element={<VolunteerPage />} />
+      </Routes>
     </>
   )
 }

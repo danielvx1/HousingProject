@@ -5,6 +5,7 @@ import { Router, Routes, Route } from 'react-router-dom'
 import AdminPage from './pages/AdminPage'
 import SocialPage from './pages/SocialPage'
 import VolunteerPage from './pages/VolunteerPage'
+import Property from './components/Property'
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/social" element={<SocialPage />} />
         <Route path="/volunteer" element={<VolunteerPage />} />
+        <Route path="/create-property" element={<Property />} />
       </Routes>
     </>
   )

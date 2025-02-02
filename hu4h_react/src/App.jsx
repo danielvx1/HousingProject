@@ -7,6 +7,7 @@ import SocialPage from './pages/SocialPage'
 import VolunteerPage from './pages/VolunteerPage'
 import Property from './components/Property'
 import ViewProperty from './components/ViewProperty'
+import ProtectedRoute from './functions/ProtectedRoute'
 
 function App() {
 
@@ -30,9 +31,19 @@ function App() {
     <>    
       <Routes>
         <Route path="/" element={<UserLoginPage />} />
-        <Route path="/admin" element={<AdminPage properties={properties} setProperties={setProperties} />} />
-        <Route path="/social" element={<SocialPage />} />
-        <Route path="/volunteer" element={<VolunteerPage />} />
+
+        <Route element={<ProtectedRoute allowedRoles={["ADMIN"]} />}>
+          <Route path="/admin" element={<AdminPage properties={properties} setProperties={setProperties} />} />
+        </Route>
+
+        <Route element={<ProtectedRoute allowedRoles={["SOCIAL"]} />}>
+          <Route path="/social" element={<SocialPage properties={properties} setProperties={setProperties} />} />
+        </Route>
+
+        <Route element={<ProtectedRoute allowedRoles={["VOLUNTEER"]} />}>
+          <Route path="/volunteer" element={<VolunteerPage properties={properties} setProperties={setProperties} />} />
+        </Route>
+
         <Route path="/create-property" element={<Property address={address} setAddress={setAddress} landlordEmail={landlordEmail}
          setLandlordEmail={setLandlordEmail} landlordPhoneNumber={landlordPhoneNumber} setLandlordPhoneNumber={setLandlordPhoneNumber}
          numberOfBedrooms={numberOfBedrooms} setNumberOfBedrooms={setNumberOfBedrooms} numberOfBathrooms={numberOfBathrooms} 

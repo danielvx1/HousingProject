@@ -20,6 +20,9 @@ const UserLogin = () => {
       
             // Navigate based on user role
             const { role } = response.data;
+
+            localStorage.setItem("userRole", role);
+
             if (role === "ADMIN") navigate("/admin");
             else if (role === "SOCIAL") navigate("/social");
             else if (role === "VOLUNTEER") navigate("/volunteer");

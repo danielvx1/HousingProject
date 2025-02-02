@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-const Header = () => {
+const HeaderSocial = () => {
 
   const navigate = useNavigate()
 
@@ -17,7 +17,7 @@ const Header = () => {
             <nav className='navbar navbar-light' style={{ backgroundColor: "#e3f2fd" }}>
               <ul>
                 <li>
-                  <Link className='navbar-brand' to='/admin'>Hands Up Housing</Link>
+                  <Link className='navbar-brand' to='/social'>Hands Up Housing</Link>
                 </li>
                 <li>
                   <button onClick={logoutUser}>Logout</button>
@@ -29,4 +29,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default HeaderSocial

@@ -1,24 +1,44 @@
 import React, { useEffect, useState } from 'react'
-import { listProperties } from '../services/PropertyService'
+import { deleteProperty, listProperties } from '../services/PropertyService'
 import { useNavigate } from 'react-router-dom'
 
-const PropertyList = () => {
-    
-    const [properties, setProperties] = useState([])
+const PropertyList = ({ properties, setProperties }) => {
 
     const navigate = useNavigate();
 
     useEffect(() => {
+        getAllProperties();
+    }, [])
+
+    function getAllProperties() {
         listProperties().then((response) => {
             setProperties(response.data);
         }).catch(err => {
             console.error(err);
         })
-    }, [])
+    }
 
     function createNewProperty() {
         navigate('/create-property');
 
+    }
+
+    function viewProperty(id) {
+        navigate(`/view-property/${id}`)
+    }
+
+    function navigateToUpdateProperty(id) {
+        navigate(`/update-property/${id}`)
+    }
+
+    function removeProperty(id) {
+        console.log(id);
+
+        deleteProperty(id).then((response) => {
+            getAllProperties();
+        }).catch(err => {
+            console.error(err);
+        })
     }
   
     return (
@@ -32,6 +52,7 @@ const PropertyList = () => {
                         <th>Property Address</th>
                         <th>Number of Bedrooms</th>
                         <th>Number of Bathrooms</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,6 +63,13 @@ const PropertyList = () => {
                             <td>{property.address}</td>
                             <td>{property.numberOfBedrooms}</td>
                             <td>{property.numberOfBathrooms}</td>
+                            <td>
+                                <button className='btn btn-info' onClick={() => viewProperty(property.id)}>View</button>
+                                <button className='btn btn-warning' onClick={() => navigateToUpdateProperty(property.id)} style={{marginLeft: '10px'}}
+                                >Update</button>
+                                <button className='btn btn-danger' onClick={() => removeProperty(property.id)} style={{marginLeft: '10px'}}    
+                                >Delete</button>
+                            </td>
                         </tr>
                         )
                     }

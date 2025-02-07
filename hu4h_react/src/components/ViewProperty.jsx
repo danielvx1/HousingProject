@@ -1,7 +1,8 @@
 import React from 'react'
 import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { getProperty } from '../services/PropertyService'
+import { useUserRole } from '../functions/useUserRole'
 
 const ViewProperty = ({ address, setAddress, landlordEmail, setLandlordEmail, 
     landlordPhoneNumber, setLandlordPhoneNumber, numberOfBedrooms, setNumberOfBedrooms,
@@ -9,9 +10,14 @@ const ViewProperty = ({ address, setAddress, landlordEmail, setLandlordEmail,
     petsAllowed, setPetsAllowed, adaAccessibility, setAdaAccessibility, incomeRequirements, 
     setIncomeRequirements, pastEvictionAllowed, setPastEvictionAllowed, offenderListingAllowed, 
     setOffenderListingAllowed, criminalRecordAllowed, setCriminalRecordAllowed, addictionAndIllnessAllowed, 
-    setAddictionAndIllnessAllowed }) => {
+    setAddictionAndIllnessAllowed, initialPropertyState }) => {
         
-    const {id} = useParams()
+    const {id} = useParams();
+
+    const navigate = useNavigate();
+
+    // Utilize function that gets "userRole" from local storage and returns it
+    const userRole = useUserRole();
 
     useEffect(() => {
             if(id) {
@@ -34,6 +40,11 @@ const ViewProperty = ({ address, setAddress, landlordEmail, setLandlordEmail,
                 })
             }
     }, [])
+
+    function goBack() {
+        initialPropertyState();
+        navigate(`/${userRole}`);
+    }
 
     return (
         <div className='container'>
@@ -125,6 +136,8 @@ const ViewProperty = ({ address, setAddress, landlordEmail, setLandlordEmail,
                                     {addictionAndIllnessAllowed === false && 'No'}
                                 </p>
                             </div>
+
+                            <button className='btn btn-secondary' onClick={goBack}>Back</button>
                     </div>
                 </div>
             </div>

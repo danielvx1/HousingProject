@@ -8,6 +8,7 @@ import VolunteerPage from './pages/VolunteerPage'
 import Property from './components/Property'
 import ViewProperty from './components/ViewProperty'
 import ProtectedRoute from './functions/ProtectedRoute'
+import UserRegisterPage from './pages/UserRegisterPage'
 
 function App() {
 
@@ -27,10 +28,28 @@ function App() {
   const [criminalRecordAllowed, setCriminalRecordAllowed] = useState('')
   const [addictionAndIllnessAllowed, setAddictionAndIllnessAllowed] = useState('')
 
+  const initialPropertyState = () => {
+    setAddress("");
+    setLandlordEmail("");
+    setLandlordPhoneNumber("");
+    setNumberOfBedrooms("");
+    setNumberOfBathrooms("");
+    setTypeOfProperty("");
+    setPetsAllowed("");
+    setAdaAccessibility("");
+    setIncomeRequirements("");
+    setPastEvictionAllowed("");
+    setOffenderListingAllowed("");
+    setCriminalRecordAllowed("");
+    setAddictionAndIllnessAllowed("");
+}
+
   return (
     <>    
       <Routes>
         <Route path="/" element={<UserLoginPage />} />
+
+        <Route path="/register" element={<UserRegisterPage />} />
 
         <Route element={<ProtectedRoute allowedRoles={["ADMIN"]} />}>
           <Route path="/admin" element={<AdminPage properties={properties} setProperties={setProperties} />} />
@@ -52,7 +71,7 @@ function App() {
          incomeRequirements={incomeRequirements} setIncomeRequirements={setIncomeRequirements} pastEvictionAllowed={pastEvictionAllowed}
          setPastEvictionAllowed={setPastEvictionAllowed} offenderListingAllowed={offenderListingAllowed} setOffenderListingAllowed={setOffenderListingAllowed}
          criminalRecordAllowed={criminalRecordAllowed} setCriminalRecordAllowed={setCriminalRecordAllowed} addictionAndIllnessAllowed={addictionAndIllnessAllowed}
-         setAddictionAndIllnessAllowed={setAddictionAndIllnessAllowed} />} />
+         setAddictionAndIllnessAllowed={setAddictionAndIllnessAllowed} initialPropertyState={initialPropertyState} />} />
 
         <Route path="/update-property/:id" element={<Property address={address} setAddress={setAddress} landlordEmail={landlordEmail}
          setLandlordEmail={setLandlordEmail} landlordPhoneNumber={landlordPhoneNumber} setLandlordPhoneNumber={setLandlordPhoneNumber}
@@ -62,7 +81,7 @@ function App() {
          incomeRequirements={incomeRequirements} setIncomeRequirements={setIncomeRequirements} pastEvictionAllowed={pastEvictionAllowed}
          setPastEvictionAllowed={setPastEvictionAllowed} offenderListingAllowed={offenderListingAllowed} setOffenderListingAllowed={setOffenderListingAllowed}
          criminalRecordAllowed={criminalRecordAllowed} setCriminalRecordAllowed={setCriminalRecordAllowed} addictionAndIllnessAllowed={addictionAndIllnessAllowed}
-         setAddictionAndIllnessAllowed={setAddictionAndIllnessAllowed} />} />
+         setAddictionAndIllnessAllowed={setAddictionAndIllnessAllowed} initialPropertyState={initialPropertyState} />} />
 
         <Route path="/view-property/:id" element={<ViewProperty address={address} setAddress={setAddress} landlordEmail={landlordEmail}
          setLandlordEmail={setLandlordEmail} landlordPhoneNumber={landlordPhoneNumber} setLandlordPhoneNumber={setLandlordPhoneNumber}
@@ -72,7 +91,7 @@ function App() {
          incomeRequirements={incomeRequirements} setIncomeRequirements={setIncomeRequirements} pastEvictionAllowed={pastEvictionAllowed}
          setPastEvictionAllowed={setPastEvictionAllowed} offenderListingAllowed={offenderListingAllowed} setOffenderListingAllowed={setOffenderListingAllowed}
          criminalRecordAllowed={criminalRecordAllowed} setCriminalRecordAllowed={setCriminalRecordAllowed} addictionAndIllnessAllowed={addictionAndIllnessAllowed}
-         setAddictionAndIllnessAllowed={setAddictionAndIllnessAllowed}
+         setAddictionAndIllnessAllowed={setAddictionAndIllnessAllowed} initialPropertyState={initialPropertyState}
          />} />
       </Routes>
     </>

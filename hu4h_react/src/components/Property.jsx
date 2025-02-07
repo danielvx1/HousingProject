@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { createProperty, getProperty, updateProperty } from '../services/PropertyService'
 import { validateForm } from '../functions/HelperFunctions'
 import { useNavigate, useParams } from 'react-router-dom'
+import { useUserRole } from '../functions/useUserRole'
 
 const Property = ({ address, setAddress, landlordEmail, setLandlordEmail, 
                 landlordPhoneNumber, setLandlordPhoneNumber, numberOfBedrooms, setNumberOfBedrooms,
@@ -9,27 +10,11 @@ const Property = ({ address, setAddress, landlordEmail, setLandlordEmail,
                 petsAllowed, setPetsAllowed, adaAccessibility, setAdaAccessibility, incomeRequirements, 
                 setIncomeRequirements, pastEvictionAllowed, setPastEvictionAllowed, offenderListingAllowed, 
                 setOffenderListingAllowed, criminalRecordAllowed, setCriminalRecordAllowed, addictionAndIllnessAllowed, 
-                setAddictionAndIllnessAllowed }) => {
+                setAddictionAndIllnessAllowed, initialPropertyState }) => {
 
     
     const navigate = useNavigate()                
     const {id} = useParams()
-
-    const initialPropertyState = () => {
-        setAddress("");
-        setLandlordEmail("");
-        setLandlordPhoneNumber("");
-        setNumberOfBedrooms("");
-        setNumberOfBathrooms("");
-        setTypeOfProperty("");
-        setPetsAllowed("");
-        setAdaAccessibility("");
-        setIncomeRequirements("");
-        setPastEvictionAllowed("");
-        setOffenderListingAllowed("");
-        setCriminalRecordAllowed("");
-        setAddictionAndIllnessAllowed("");
-    }
 
     // Validate form (input/on submission)
     const [errors, setErrors] = useState({
@@ -85,7 +70,6 @@ const Property = ({ address, setAddress, landlordEmail, setLandlordEmail,
         }
     }, [])
 
-    // call createProperty method from PropertyService
     function saveAndUpdateProperty(e) {
         e.preventDefault();
 
@@ -104,11 +88,15 @@ const Property = ({ address, setAddress, landlordEmail, setLandlordEmail,
                             criminalRecordAllowed, addictionAndIllnessAllowed}
             console.log(property)
 
+            // Utilize function that gets "userRole" from local storage and returns it
+            const userRole = useUserRole();
+
+            // call createProperty/updateProperty method from PropertyService
             if(id) {
                 updateProperty(id, property).then((response) => {
                     console.log(response.data);
                     initialPropertyState();
-                    navigate('/admin')
+                    navigate(`/${userRole}`)
                 }).catch(err => {
                     console.error(err);
                 })

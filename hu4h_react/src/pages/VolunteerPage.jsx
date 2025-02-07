@@ -1,5 +1,6 @@
 import HeaderVolunteer from "../components/HeaderVolunteer";
 import PropertyList from "../components/PropertyList";
+import PropertyListVolunteer from "../components/PropertyListVolunteer";
 
 export default function VolunteerPage(props) {
     
@@ -10,7 +11,7 @@ export default function VolunteerPage(props) {
             <HeaderVolunteer />
             <h2>Welcome</h2>
             <div>Volunteer Page</div>
-            <PropertyList {...props} />
+            <PropertyListVolunteer {...props} />
         </div>
     ) 
 }

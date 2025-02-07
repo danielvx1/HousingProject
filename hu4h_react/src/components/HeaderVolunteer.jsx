@@ -17,7 +17,7 @@ const HeaderVolunteer = () => {
             <nav className='navbar navbar-light' style={{ backgroundColor: "#e3f2fd" }}>
               <ul>
                 <li>
-                  <Link className='navbar-brand' to='/admin'>Hands Up Housing</Link>
+                  <Link className='navbar-brand' to='/volunteer'>Hands Up Housing</Link>
                 </li>
                 <li>
                   <button onClick={logoutUser}>Logout</button>

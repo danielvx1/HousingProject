@@ -10,7 +10,7 @@ const UserRegister = () => {
     function saveUser(e) {
         e.preventDefault();
 
-        const user = {username, email, password, role}
+        const user = { username, email, password, role }
         console.log(user)
 
         createUser(user).then((response) => {
@@ -19,62 +19,68 @@ const UserRegister = () => {
     }
 
     return (
-        <div>
-            <h2>Register</h2>
-            <form>
-                <div>
-                    <label>Username: </label>
-                    <input
-                        type='text'
-                        placeholder='Enter username'
-                        name='username'
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    >
-                    </input>
-                </div>
+        <div className='d-flex justify-content-center align-items-center vh-100 bg-light'>
+            <div className='card p-4 shadow-lg' style={{ width: "350px" }}>
+            <h2 className='text-center mb-3'>Register</h2>
+                <form>
+                    <div className='mb-3'>
+                        <label className='form-label'>Username: </label>
+                        <input
+                            type='text'
+                            placeholder='Enter username'
+                            name='username'
+                            value={username}
+                            className='form-control'
+                            onChange={(e) => setUsername(e.target.value)}
+                        >
+                        </input>
+                    </div>
 
-                <div>
-                    <label>Email: </label>
-                    <input
-                        type='text'
-                        placeholder='Enter email'
-                        name='email'
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    >
-                    </input>
-                </div>
+                    <div className='mb-3'>
+                        <label className='form-label'>Email: </label>
+                        <input
+                            type='text'
+                            placeholder='Enter email'
+                            name='email'
+                            value={email}
+                            className='form-control'
+                            onChange={(e) => setEmail(e.target.value)}
+                        >
+                        </input>
+                    </div>
 
-                <div>
-                    <label>Password: </label>
-                    <input
-                        type='password'
-                        placeholder='Enter password'
-                        name='password'
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    >
-                    </input>
-                </div>
+                    <div className='mb-3'>
+                        <label className='form-label'>Password: </label>
+                        <input
+                            type='password'
+                            placeholder='Enter password'
+                            name='password'
+                            value={password}
+                            className='form-control'
+                            onChange={(e) => setPassword(e.target.value)}
+                        >
+                        </input>
+                    </div>
 
-                <div>
-                    <label>Role: </label>
-                    <input
-                        type='number'
-                        placeholder='Enter role'
-                        name='role'
-                        value={role}
-                        onChange={(e) => setRole(e.target.value)}
-                    >
-                    </input>
-                </div>
+                    <div className='mb-3'>
+                        <label className='form-label'>Role: </label>
+                        <input
+                            type='number'
+                            placeholder='Enter role'
+                            name='role'
+                            value={role}
+                            className='form-control'
+                            onChange={(e) => setRole(e.target.value)}
+                        >
+                        </input>
+                    </div>
 
-                <button onClick={saveUser}>Submit</button>
-            </form>
+                    <button className='btn btn-primary w-100' onClick={saveUser}>Submit</button>
+                </form>
+            </div>
         </div>
     )
 
- }
+}
 
- export default UserRegister
+export default UserRegister

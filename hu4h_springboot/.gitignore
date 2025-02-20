@@ -34,3 +34,6 @@ build/
 
 # db
 src/main/resources/application-local.properties
+
+# security key
+src/main/java/com/hu4h/demo/security/JwtUtil.java

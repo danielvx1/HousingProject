@@ -10,7 +10,10 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByUsername(String username);
+    // No longer optional, need to explicitly check for null
+    // The method findByUsername will return null instead of Optional.empty()
+    // when no result is found
+    User findByUsername(String username);
     Boolean existsByUsername(@NotBlank @Size(max = 20) String username);
     Boolean existsByEmail(String email);
     Optional<User> findByEmail(String email);

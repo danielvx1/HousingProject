@@ -8,7 +8,6 @@ import com.hu4h.demo.dtos.RegistrationDTO;
 import com.hu4h.demo.models.RegisteringUser;
 import com.hu4h.demo.models.Role;
 import com.hu4h.demo.models.User;
-import com.hu4h.demo.services.JwtService;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +31,6 @@ public class AuthController {
     RegisteringUserRepository registeringUserRepository;
 
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
-
-    @Autowired
-    private JwtService jwtService;
 
     @PostMapping("register")
     public ResponseEntity<?> register(@Valid @RequestBody RegistrationDTO registrationDTO, Errors errors) {
@@ -71,14 +67,12 @@ public class AuthController {
                 if (currUser == null || !encoder.matches(currPassword, currUser.getPassword())) {
                     return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Password is incorrect");
                 } else {
-                    String token = jwtService.generateToken(currUser.getUsername());
 
                     // Return user role and success message
                     Map<String, Object> response = new HashMap<>();
                     response.put("message", "User logged in successfully");
                     response.put("role", currUser.getRole()); // Directly access the role
                     response.put("username", currUser.getUsername()); // Directly access the username
-                    response.put("token", token); // Attach JWT token
                     return ResponseEntity.ok().body(response);
                 }
             }
@@ -103,8 +97,8 @@ public class AuthController {
                 return ResponseEntity.badRequest().body("User is already confirmed\n");
             }
             String currPassword = confirmDTO.getPassword();
-            if (currUser == null || !currUser.getPassword().equals(currPassword)) {
-                return ResponseEntity.badRequest().body("Authenticating password is incorrect");
+            if (currUser == null || !encoder.matches(currPassword, currUser.getPassword())) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Password is incorrect");
             } else {
                 Optional<RegisteringUser> registeringUser = registeringUserRepository
                         .findByUsername(confirmDTO.getConfirmUsername());

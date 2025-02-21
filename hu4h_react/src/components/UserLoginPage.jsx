@@ -8,7 +8,7 @@ export default function UserLoginPage() {
         <>
             <nav className='navbar navbar-light' style={{ backgroundColor: "#c1d5f5" }}>
                 <div className='container-fluid d-flex align-items-center'>
-                    <span className='fw-bold fs-4'>Hand Up Housing</span>
+                    <span className='fw-bold fs-4'>Housing</span>
 
                     {/* Right-aligned navigation */}
                     <ul className='navbar-nav ms-auto d-flex align-items-center'>

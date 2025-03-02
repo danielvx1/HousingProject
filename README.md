@@ -1,11 +1,11 @@
 # Real Estate Management Platform  
 
-## 📌 Project Overview  
-A property management software that allows users to manage, search, and recommend properties. The system is built using:  
+## 🎯 Project Overview  
+A property management software that allows users to manage and recommend properties. The system is built using:  
 
 ## Features  
 ✅ User authentication & role-based access control  
-✅ Property search, add, and management system    
+✅ Property add, update, delete   
 ✅ Responsive UI  
 
 ## Tech Stack  

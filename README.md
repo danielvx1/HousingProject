@@ -17,7 +17,8 @@ A property management software that allows users to manage and recommend propert
 | Hosting    | AWS |
 
 ## Setup Guide  
-### Clone the repository  
+### Clone the repository
+
 ```sh
 git clone https://github.com/danielvx1/HousingProject
 cd HousingProject

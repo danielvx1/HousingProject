@@ -1,12 +1,7 @@
 # Real Estate Management Platform  
 
 ## 🎯 Project Overview  
-A property management software that allows users to manage and recommend properties. The system is built using:  
-
-## Features  
-✅ User authentication & role-based access control  
-✅ Property add, update, delete   
-✅ Responsive UI  
+A property management software that allows users to manage and recommend properties. 
 
 ## Tech Stack  
 | Component   | Technology |
@@ -15,6 +10,11 @@ A property management software that allows users to manage and recommend propert
 | Backend    | Spring Boot |
 | Database   | MySQL |
 | Hosting    | AWS |
+
+## Features  
+✅ User authentication & role-based access control  
+✅ Property add, update, delete 
+✅ Responsive UI  
 
 ## Setup Guide  
 ### Clone the repository  

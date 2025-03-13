@@ -12,9 +12,9 @@ A property management software that allows users to manage and recommend propert
 | Hosting    | AWS |
 
 ## Features  
-✅ User authentication & role-based access control  
-✅ Property add, update, delete 
-✅ Responsive UI  
+✅ User authentication & role-based access control
+✅ Property add, update, delete
+✅ Responsive UI
 
 ## Setup Guide  
 ### Clone the repository  
